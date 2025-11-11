@@ -1,0 +1,6 @@
+{
+  "name": "ichika",
+  "age": 22,
+  "friends": ["ぽちぽちフレンズ", "いちかどん"],
+  "workoutObject": { "name": "縄跳び", "time": 20 }
+}
