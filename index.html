@@ -7,6 +7,23 @@
     <title>exercise-tracker</title>
   </head>
   <body>
+    <!-- タイトルH2で作成
+     ラベルを作成，インプット，サブミットのボタン
+    -->
+    <form id="memo-form">
+      <h2>ミニ運動メモ</h2>
+      <label for="memo" class="required">メモ</label>
+      <input
+        id="memo"
+        type="text"
+        required
+        placeholder="例: ランニング 10 分"
+      />
+      <button type="submit">追加</button>
+    </form>
+    <!-- 追加した内容を表示するためのリスト -->
+    <h3>今日の運動メモ</h3>
+    <ul id="memo-list"></ul>
     <script src="script.js"></script>
   </body>
 </html>
