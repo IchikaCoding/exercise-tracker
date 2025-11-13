@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Day 3：フォーム最小ループ（テーブル版・改）</title>
+    <style>
+      /* （見た目を整えるCSS、内容は前と同じなので省略） */
+    </style>
+  </head>
+  <body>
+    <h1>Day 3：フォーム最小ループ（テーブル版・改）</h1>
+
+    <form id="table-memo-form">
+      <label for="table-memo" class="required">メモ</label>
+      <input
+        id="table-memo"
+        type="text"
+        required
+        placeholder="例: ランニング 10 分"
+      />
+      <button type="submit">追加</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>メモ内容</th>
+          <th>記録時刻</th>
+        </tr>
+      </thead>
+      <tbody id="table-memo-body"></tbody>
+    </table>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
