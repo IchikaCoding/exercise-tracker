@@ -1,7 +1,7 @@
 // DOMが使える状態になったら、フォーム初期化を実行
 document.addEventListener("DOMContentLoaded", setupTableMemoForm);
 // 全ての記録を保持する配列（最新順に並び替えて表示する）
-const tableEntries = [];
+let tableEntries = [];
 
 // テーブル版フォームの初期化。
 function setupTableMemoForm() {
@@ -66,5 +66,11 @@ function renderTableMemo() {
 }
 // 削除ボタンが押されたときに呼ばれる関数
 // targetIDを引数に持っている関数
-
-// 配列の中
+function removeButtonClick(targetID) {
+  // 配列の中のクリックされたIDと一致しないものだけを集めて、新しい配列を作る
+  tableEntries = tableEntries.filter((entry) => entry.id !== targetID);
+  // 配列の中身が変わったので、テーブルの表示をもう一度更新する
+  console.log("ターゲットIDの型", typeof targetID);
+  console.log("ターゲットID", targetID);
+  renderTableMemo();
+}
