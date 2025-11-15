@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>運動記録アプリ</title>
+    <meta
+      name="description"
+      content="有酸素運動のみ記録ができるシンプルなアプリです"
+    />
+  </head>
+  <body>
+    <!-- 入力フォーム -->
+    <section id="input-form-section">
+      <h2>入力フォーム</h2>
+      <form id="input-form">
+        <!-- 日付の入力エリア -->
+        <div class="form-field">
+          <label for="date">日付</label>
+          <input type="date" id="date" name="date" class="required" required />
+        </div>
+        <!-- 運動種目の入力エリア -->
+        <div class="form-field">
+          <label for="type">運動種目</label>
+          <input
+            type="text"
+            id="type"
+            name="type"
+            class="required"
+            required
+            placeholder="縄跳び"
+          />
+        </div>
+        <!-- 所要時間の入力エリア -->
+        <div class="form-field">
+          <label for="requiredTime">所要時間（分）</label>
+
+          <input
+            type="number"
+            id="requiredTime"
+            name="requiredTime"
+            class="required"
+            min="0"
+            required
+          />
+          <span>分</span>
+        </div>
+        <!-- メモの入力エリア -->
+        <div class="form-field">
+          <label for="memo">メモ</label>
+          <input
+            type="text"
+            id="memo"
+            name="memo"
+            placeholder="ひとこと入力してね"
+          />
+        </div>
+        <button type="submit">追加</button>
+      </form>
+    </section>
+    <!-- フィルターの設定画面 -->
+    <!-- 記録の一覧画面 -->
+    <section id="input-display-section">
+      <h2>>運動記録一覧</h2>
+      <table id="input-table">
+        <thead>
+          <tr>
+            <th>日付</th>
+            <th>運動種目</th>
+            <th>所要時間</th>
+            <th>メモ</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
