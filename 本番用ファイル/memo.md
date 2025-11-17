@@ -22,9 +22,9 @@ type WorkoutEntry = {
 
 ## フォームのフィールド構造
 
-- 日付：date
+- [ ] 日付：date
   - いつ運動したか記録するため
-- 運動種目：text
+- [ ] 運動種目：text
   - 何の運動したかを記録するため
   - 言い訳もここで選択できる
 - 所要時間：number + 分単位
@@ -36,9 +36,10 @@ type WorkoutEntry = {
 
 ## memo
 
-- `querySelector` なら`("form#input-form-section")`とか`("form#input-form > div:nth-of-type(1)")`でも指定できる
-- Ctrl + d で要素とかを複数カーソル当てられるよ
-- excalidraw はオープンソースで TS・JS でできるらしい
+- [ ] `querySelector` なら`("form#input-form-section")`とか`("form#input-form >iv:nth-of-type(1)")`でも指定できる
+- [ ] Ctrl + d で要素とかを複数カーソル当てられるよ
+- [ ] excalidraw はオープンソースで TS・JS でできるらしい
+- [ ] `Shift + Alt + ↓`で今いる行の複製ができる ✨️
 
 ## TODO
 
@@ -56,3 +57,15 @@ type WorkoutEntry = {
 - [ ] 2025-11-15 の TODO を片付ける
 - [ ] 最低限の CSS で、見た目をちょっとだけ整えよう
   - [ ] ID やら動きの違いやらを確認しながら進める ✨️
+  - [ ] プッシュしてね ♪
+
+# 2025-11-17
+
+- [x] CSS セレクタのスペース有り無しの挙動がわからない
+  - スペースあり → 子孫セレクタ
+    - 例: .main p は、クラスが main である要素の中にある、すべての p 要素にスタイルを適用
+  - スペースなし →AND 条件になる
+    - 例: p.important は、p 要素であり、かつ class が important である要素にスタイルを適用
+- [ ] （原因不明）date 型のときは input 要素でも`class="required"`つけたらアスタリスク表示できた。でも，type がテキスト型，number 型のときは表示されなった
+- [x] `::afer`って何？→[MDN](https://developer.mozilla.org/ja/docs/Web/CSS/Reference/Selectors/::after)
+- [x] テーブルのスタイルについて →[MDN](https://developer.mozilla.org/ja/docs/Learn_web_development/Core/Styling_basics/Tables)

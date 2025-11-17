@@ -1,0 +1,25 @@
+h1 {
+  color: rgb(222, 169, 227);
+  text-align: center;
+}
+
+body {
+  font-family: sans-serif; /* どのPCでも綺麗に見える、ゴシック体のフォント */
+  margin: 16px; /* 画面の端っこに、少しだけ余白を作る */
+}
+
+/* class="required"がついてるラベルの、後ろに「 *」を追加する */
+.required::after {
+  content: " *";
+  color: #c00; /* ちょっと目立つように、赤色で */
+}
+
+table {
+  border-collapse: collapse; /* テーブルの線を、二重線じゃなく一本線にする */
+}
+
+th,
+td {
+  border: 10px solid #000; /* テーブルのマスに、黒い枠線をつける */
+  text-align: left; /* マスの中の文字を、左揃えにする */
+}
