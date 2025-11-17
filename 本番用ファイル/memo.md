@@ -7,7 +7,7 @@ type WorkoutEntry = {
   type: string;
   minutes: number;
   note: string;
-  createAt: number;
+  createdAt: number;
 };
 ```
 
@@ -51,6 +51,10 @@ type WorkoutEntry = {
 - [x] ラベルをクリックして入力欄にフォーカスが当たるようにする
   - `<label>`の for 属性と`<input>`の id 属性の名前を同じにしたらできるよ
 - [ ] `<table>`の中で，`<thead>`とか`<tbody>`と分ける意義が未だにわからず…
+  - ブラウザに列見出しだと伝えられる
+  - tbody だけにスクロールを付ける
+  - 見出しと本文を構造的に分けられる
+    - スクリーンリーダーやテーブルを解析するツールが理解しやすくなる
 
 ## 2025-11-16 のやること
 
@@ -69,3 +73,19 @@ type WorkoutEntry = {
 - [ ] （原因不明）date 型のときは input 要素でも`class="required"`つけたらアスタリスク表示できた。でも，type がテキスト型，number 型のときは表示されなった
 - [x] `::afer`って何？→[MDN](https://developer.mozilla.org/ja/docs/Web/CSS/Reference/Selectors/::after)
 - [x] テーブルのスタイルについて →[MDN](https://developer.mozilla.org/ja/docs/Learn_web_development/Core/Styling_basics/Tables)
+- [ ] `<head>`の意味は？
+  - メタ情報を入れる場所
+  - `<body>`はページ本体を入れる場所
+
+## データ構造
+
+```json
+{
+  "id": "1763389283580", //IDは数値のまま受け取って使うときに文字列に変換すると良き！
+  "date": "2023-04-01",
+  "type": "なわとび",
+  "minutes": 30,
+  "note": "30分って強くない？？",
+  "createdAt": 1763389283580
+}
+```
