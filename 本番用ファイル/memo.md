@@ -65,6 +65,8 @@ type WorkoutEntry = {
 
 # 2025-11-17
 
+## わからないことリスト
+
 - [x] CSS セレクタのスペース有り無しの挙動がわからない
   - スペースあり → 子孫セレクタ
     - 例: .main p は、クラスが main である要素の中にある、すべての p 要素にスタイルを適用
@@ -73,9 +75,22 @@ type WorkoutEntry = {
 - [ ] （原因不明）date 型のときは input 要素でも`class="required"`つけたらアスタリスク表示できた。でも，type がテキスト型，number 型のときは表示されなった
 - [x] `::afer`って何？→[MDN](https://developer.mozilla.org/ja/docs/Web/CSS/Reference/Selectors/::after)
 - [x] テーブルのスタイルについて →[MDN](https://developer.mozilla.org/ja/docs/Learn_web_development/Core/Styling_basics/Tables)
-- [ ] `<head>`の意味は？
+- [x] `<head>`の意味は？
   - メタ情報を入れる場所
   - `<body>`はページ本体を入れる場所
+- [x] HTML 要素を参照するとき，const でやる方法は？
+  - const は「宣言と同時に値を決めておく」
+  - 宣言時に初期値を与えていないとエラーになる
+  - DomContentLoaded を使用する場合
+    - JS のあとに HTML を再度読み直すから，const で宣言することは難しそう
+  - 関数の外側で let のまま宣言 → 関数内で代入して使う方針にする
+  <!-- TODO ここチェック！！ミスあり -->
+- [x] HTML 要素を参照するとき，const でやる方法は？
+  - const は「宣言と同時に値を決めておく」
+  - 宣言時に初期値を与えていないとエラーになる
+  - DomContentLoaded を使用する場合
+    - JS のあとに HTML を再度読み直すから，const で宣言することは難しそう
+  - 関数の外側で let のまま宣言 → 関数内で代入して使う方針にする
 
 ## データ構造
 
@@ -89,3 +104,13 @@ type WorkoutEntry = {
   "createdAt": 1763389283580
 }
 ```
+
+# 2025-11-18
+
+## TODO
+
+- [ ] const と let の違いの曖昧さをなくす
+  - 「JS の const と let の違いを完全に理解するための最小サンプルをリストして」
+- [ ] defer をつけて JS を読み込んだときの挙動について調べる
+- [ ] DOMContentLoaded について調べる
+- [ ] エントリーポイントも調べる
