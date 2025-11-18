@@ -20,3 +20,12 @@ function getElementFunc() {
   requiredTimeElement = document.getElementById("requiredTime");
   memoElement = document.getElementById("memo");
 }
+
+// // オブジェクトのプロパティ変更
+// const user = { name: "Taro", age: 20 };
+
+// // 配列の要素操作
+// const items = ["A", "B", "C"];
+
+// // 配列をプロパティに持つオブジェクト
+// const todo = { title: "Work", tasks: ["mail", "docs"] };
