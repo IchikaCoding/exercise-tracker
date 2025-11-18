@@ -116,3 +116,29 @@ type WorkoutEntry = {
 - [ ] defer をつけて JS を読み込んだときの挙動について調べる
 - [ ] DOMContentLoaded について調べる
 - [ ] エントリーポイントも調べる
+
+## 今のところわかっていること
+
+defer で DOMContentLoaded イベントを発行する前に実行される
+
+defer つけると，HTML で土台ができたあとに実行される
+
+- HTML とスクリプト読む順番，DOMContentLoaded のイベントが発火するタイミングとどんな処理がされるか
+
+HTML を上から読み込み > script タグの位置で JS を実行 > 下まで読み込んだら DOMContetLoaded 発火が defer なしで、HTML を上から読み込み > 下まで読み込んで defer が付いた JS 実行 > DOMContetLoaded 発火が defer あり
+
+## defer つけたバージョン
+
+- HTML の読み込みが全部終わってからスクリプトを読み込む
+- DOMContentLoaded イベントが発火する前に実行してねというフラグ
+  HTML（全部読んで DOM 構築終了）→script 実行 → DOMContentLoaded イベントが発火
+  - DOMContentLoaded の前に Script が実行されるらしいのですが，script でやっていることは何？
+  - DOMContentLoaded のコードを読む
+- HTML 読み込みと DOM 組み立てがスムーズに進む
+
+## defer つけてないバージョン
+
+- HTML 読み込む
+- DOM 構築途中でも script タグの位置で JS を実行（DOM を作る途中で JS に邪魔）
+- DOMContentLoaded イベントは DOM が完成したあとに発火する
+-
