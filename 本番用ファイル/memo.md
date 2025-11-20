@@ -141,4 +141,14 @@ HTML を上から読み込み > script タグの位置で JS を実行 > 下ま�
 - HTML 読み込む
 - DOM 構築途中でも script タグの位置で JS を実行（DOM を作る途中で JS に邪魔）
 - DOMContentLoaded イベントは DOM が完成したあとに発火する
--
+
+# 2025-11-20
+
+- [ ] JS の処理を追加する
+  - [ ] ローカルストレージの実装
+
+## わからないこと
+
+- `minutes: parseInt(minutesInputElement.value, 10) || 0,`について
+  - minutesInputElement.value が文字列だったりして parseInt がエラー（NaN など）を返した場合 → 左が falsy
+  - エラーになったら 0 を返す仕組みにするために論理和を使用した → フォールバック

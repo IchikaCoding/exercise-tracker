@@ -62,6 +62,7 @@ function handleTableMemoSubmit(event) {
     return;
   }
   tableEntries.push(text);
+  WORKOUT_STORAGE_KEY;
   // TODO 配列が更新されたので、テーブルを再描画する
   renderTableMemo();
   // 入力ボックスを空にして、フォーカスを当てる
