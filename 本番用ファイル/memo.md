@@ -152,3 +152,16 @@ HTML を上から読み込み > script タグの位置で JS を実行 > 下ま�
 - `minutes: parseInt(minutesInputElement.value, 10) || 0,`について
   - minutesInputElement.value が文字列だったりして parseInt がエラー（NaN など）を返した場合 → 左が falsy
   - エラーになったら 0 を返す仕組みにするために論理和を使用した → フォールバック
+
+## TODO
+
+- [x] ローカルストレージとイベントリスナーの登録
+
+# 2025-11-21
+
+## TODO
+
+- [ ] `<input type="submit" />`と`<button type="submit">追加</button>`の違いを調べる
+- [ ] 明日やることは手動テスト
+- [ ] UUID で ID をセットしてみる #TODO
+- [ ] onSubmit を実行してみる
