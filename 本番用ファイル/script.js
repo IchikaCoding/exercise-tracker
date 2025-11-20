@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", () => {
+  assignElementReferences();
+  attachEvent();
+});
+
 console.log("こんちか～✨️✨️");
 
 // 記録ごとにユニークなID（=作られた瞬間の時刻のミリ秒）を返す関数
@@ -56,4 +61,29 @@ function loadEntriesFromStorage() {
 // 保存するデータの引数は entries
 function saveEntriesToStorage(entries) {
   return localStorage.setItem(WORKOUT_STORAGE_KEY, JSON.stringify(entries));
+}
+
+/** ーーーーーイベントリスナー登録ーーーーーー */
+
+// イベントリスナー（イベントを待ち受ける仕組み）を登録する関数
+function attachEvent() {
+  inputFormElement.addEventListener("submit", handleEventListener);
+}
+
+// フォームが送信（submit）されたときに呼ばれる関数
+// 1. リロードを止める
+// 2. フォームからデータを取得→ローカルストレージに最新データ全体を保存するまでやる
+function handleEventListener(event) {
+  event.preventDefault();
+
+  const entry = getFormData();
+  const entries = loadEntriesFromStorage();
+  entries.push(entry);
+  saveEntriesToStorage(entries);
+
+  // 次の入力がしやすいように、フォームをリセット
+  inputFormElement.reset();
+  // ローカルストレージに保存されたデータ数をチェック
+  console.log("entryの中身", entry);
+  console.log("entriesの中身", entries);
 }
