@@ -162,6 +162,12 @@ HTML を上から読み込み > script タグの位置で JS を実行 > 下ま�
 ## TODO
 
 - [ ] `<input type="submit" />`と`<button type="submit">追加</button>`の違いを調べる
-- [ ] 明日やることは手動テスト
+- [x] 手動テスト
+- [ ] 保存データの画面表示処理を実装
 - [ ] UUID で ID をセットしてみる #TODO
 - [ ] onSubmit を実行してみる
+- [ ]
+
+## わからないこと
+
+- [ ] localStorage の中身が空なら空配列を返すとどういうときに便利なの？
