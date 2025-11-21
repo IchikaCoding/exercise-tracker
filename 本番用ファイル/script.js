@@ -60,9 +60,9 @@ function saveEntriesToStorage(entries) {
 /** ーーーーーイベントリスナー登録ーーーーーー */
 
 // イベントリスナー（イベントを待ち受ける仕組み）を登録する関数
-// function attachEvent() {
-//   inputFormElement.addEventListener("submit", handleEventListener);
-// }
+function attachEvent() {
+  inputFormElement.addEventListener("submit", handleEventListener);
+}
 
 // フォームが送信（submit）されたときに呼ばれる関数
 // 1. リロードを止める
@@ -90,6 +90,6 @@ document.addEventListener("DOMContentLoaded", initializePage);
 
 function initializePage() {
   assignElementReferences();
-  // attachEvent();
+  attachEvent();
 }
 document.addEventListener("DOMContentLoaded", initializePage);
