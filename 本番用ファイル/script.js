@@ -1,15 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
-  assignElementReferences();
-  attachEvent();
-});
-
-console.log("こんちか～✨️✨️");
-
-// 記録ごとにユニークなID（=作られた瞬間の時刻のミリ秒）を返す関数
-// TODO IDだけどcreatedAtにも使うからちょい検討する
-function generateEntryId() {
-  return Date.now();
-}
+// localStorageに保存するときのキー（合言葉）:'ichikaWorkoutLogEntries'
+const WORKOUT_STORAGE_KEY = "ichikaWorkoutLogEntries";
 
 /** ーーーーHTML要素への参照ーーーー */
 let inputFormElement;
@@ -33,6 +23,12 @@ function assignElementReferences() {
 // // 配列をプロパティに持つオブジェクト
 // const todo = { title: "Work", tasks: ["mail", "docs"] };
 
+// TODO UUIDでもやってみよう♪
+// 記録ごとにユニークなID（=作られた瞬間の時刻のミリ秒）を返す関数
+function generateEntryId() {
+  return Date.now();
+}
+
 // フォームに入力された値を取得して、一つのオブジェクトにまとめて返す関数
 // 1．記録のIDと作成時刻を取得
 // 2．決めたデータ構造のオブジェクトに詰めていく
@@ -48,8 +44,6 @@ function getFormData() {
   };
 }
 
-// localStorageに保存するときのキー（合言葉）:'ichikaWorkoutLogEntries'
-const WORKOUT_STORAGE_KEY = "ichikaWorkoutLogEntries";
 // localStorageから、保存されている記録の配列を読み込む関数load
 //  返す値は保存されているデータがあるかどうかによって変わる
 function loadEntriesFromStorage() {
@@ -87,3 +81,15 @@ function handleEventListener(event) {
   console.log("entryの中身", entry);
   console.log("entriesの中身", entries);
 }
+
+function initializePage() {
+  assignElementReferences();
+  attachEvent();
+}
+document.addEventListener("DOMContentLoaded", initializePage);
+
+function initializePage() {
+  assignElementReferences();
+  attachEvent();
+}
+document.addEventListener("DOMContentLoaded", initializePage);
