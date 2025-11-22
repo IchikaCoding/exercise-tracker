@@ -171,3 +171,13 @@ HTML を上から読み込み > script タグの位置で JS を実行 > 下ま�
 ## わからないこと
 
 - [ ] localStorage の中身が空なら空配列を返すとどういうときに便利なの？
+
+- これは一体なにかを調べる
+
+  - `const form = document.getElementById("input-form"); getEventListeners(form).submit`
+
+- デバッグツールで確認した結果
+  - JS での実行
+  - HTML のほうの onsubmit が実行された
+- `const form = document.getElementById("input-form"); getEventListeners(form).submit`を実行したら`[0]`に onsubmit がいた。`[1]`には`handleEventListener(event)`がいた
+- 実行順がわからない

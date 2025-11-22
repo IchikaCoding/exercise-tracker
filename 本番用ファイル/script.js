@@ -78,7 +78,8 @@ function handleEventListener(event) {
   // 次の入力がしやすいように、フォームをリセット
   inputFormElement.reset();
   // ローカルストレージに保存されたデータ数をチェック
-  console.log("entryの中身", entry);
+  console.dir(entry);
+  console.log("entriesの中身", JSON.stringify(entry));
   console.log("entriesの中身", entries);
 }
 
