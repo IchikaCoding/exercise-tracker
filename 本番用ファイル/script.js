@@ -84,22 +84,11 @@ function handleEventListener(event) {
   console.dir(entry);
   console.log("entriesの中身", JSON.stringify(entry));
   console.log("entriesの中身", entries);
+  renderEntryTable();
 }
-
-function initializePage() {
-  assignElementReferences();
-  attachEvent();
-}
-document.addEventListener("DOMContentLoaded", initializePage);
-
-function initializePage() {
-  assignElementReferences();
-  attachEvent();
-}
-document.addEventListener("DOMContentLoaded", initializePage);
 
 /** 保存されているデータをテーブルに描画する関数 */
-function renderFunc() {
+function renderEntryTable() {
   // まずは、localStorageから全データを読み込む
   const entries = loadEntriesFromStorage();
   // もし、記録が1件もなかったら、「データがありません」という特別な行を表示する
@@ -110,24 +99,30 @@ function renderFunc() {
   // 配列のデータを、forループで一件ずつ取り出して処理する
   // テーブルの要素はテーブルの行にデータを追加する順番
   // TODO <td class="text-end">は使うときに追加
-  let tableHTML = "";
-  console.table(entries);
-  for (const entry of entries) {
-    console.dir(entry);
-    tableHTML =
-      tableHTML +
-      `
+  const tableHTML = entries
+    .map(
+      (entry) => `
     <tr>
         <td>${entry.date}</td>
         <td>${entry.type}</td>
         <td>${entry.minutes}</td>
         <td>${entry.note || ""}</td>
     </tr>
-    `;
-  }
+    `
+    )
+    .join("");
+  console.table(entries);
 
   // 出来上がったHTMLの文字列を、テーブルの<tbody>に一気に流し込む！
   tabelBodyElement.innerHTML = tableHTML;
   // 合計件数（文字列）も、ちゃんと更新する
   totalCountElement.textContent = String(entries.length);
 }
+
+/** ページの準備をするための関数 */
+function initializePage() {
+  assignElementReferences();
+  attachEvent();
+  renderEntryTable();
+}
+document.addEventListener("DOMContentLoaded", initializePage);
