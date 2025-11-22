@@ -14,6 +14,9 @@ function assignElementReferences() {
   typeInputElement = document.getElementById("type");
   requiredTimeInputElement = document.getElementById("requiredTime");
   memoInputElement = document.getElementById("memo");
+  /** テーブルの要素を取得する */
+  tabelBodyElement = document.getElementById("table-body");
+  totalCountElement = document.getElementById("total-count");
 }
 
 // // オブジェクトのプロパティ変更
@@ -94,3 +97,37 @@ function initializePage() {
   attachEvent();
 }
 document.addEventListener("DOMContentLoaded", initializePage);
+
+/** 保存されているデータをテーブルに描画する関数 */
+function renderFunc() {
+  // まずは、localStorageから全データを読み込む
+  const entries = loadEntriesFromStorage();
+  // もし、記録が1件もなかったら、「データがありません」という特別な行を表示する
+  // TODO ここのコード実行されるか確認
+  if (entries.length === 0) {
+    tableHTML = `<tr><td>「データがありません」</td></tr>`;
+  }
+  // 配列のデータを、forループで一件ずつ取り出して処理する
+  // テーブルの要素はテーブルの行にデータを追加する順番
+  // TODO <td class="text-end">は使うときに追加
+  let tableHTML = "";
+  console.table(entries);
+  for (const entry of entries) {
+    console.dir(entry);
+    tableHTML =
+      tableHTML +
+      `
+    <tr>
+        <td>${entry.date}</td>
+        <td>${entry.type}</td>
+        <td>${entry.minutes}</td>
+        <td>${entry.note || ""}</td>
+    </tr>
+    `;
+  }
+
+  // 出来上がったHTMLの文字列を、テーブルの<tbody>に一気に流し込む！
+  tabelBodyElement.innerHTML = tableHTML;
+  // 合計件数（文字列）も、ちゃんと更新する
+  totalCountElement.textContent = String(entries.length);
+}
