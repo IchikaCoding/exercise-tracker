@@ -7,6 +7,10 @@ let dateInputElement;
 let typeInputElement;
 let requiredTimeInputElement;
 let memoInputElement;
+let tabelBodyElement;
+let totalCountElement;
+let fileterDateInputElement;
+let clearFilterButtonElement;
 
 function assignElementReferences() {
   inputFormElement = document.getElementById("input-form");
@@ -17,6 +21,9 @@ function assignElementReferences() {
   /** テーブルの要素を取得する */
   tabelBodyElement = document.getElementById("table-body");
   totalCountElement = document.getElementById("total-count");
+  /** フィルターの要素を取得する */
+  fileterDateInputElement = document.getElementById("filter-date");
+  clearFilterButtonElement = document.getElementById("clear-filter");
 }
 
 // // オブジェクトのプロパティ変更
@@ -65,6 +72,8 @@ function saveEntriesToStorage(entries) {
 // イベントリスナー（イベントを待ち受ける仕組み）を登録する関数
 function attachEvent() {
   inputFormElement.addEventListener("submit", handleEventListener);
+  fileterDateInputElement.addEventListener("change", renderEntryTable);
+  clearFilterButtonElement.addEventListener("click", handleFilterClear);
 }
 
 // フォームが送信（submit）されたときに呼ばれる関数
@@ -89,6 +98,7 @@ function handleEventListener(event) {
 
 /** 保存されているデータをテーブルに描画する関数 */
 function renderEntryTable() {
+  console.log("[renderEntryTable] called", new Date().toISOString());
   // まずは、localStorageから全データを読み込む
   const entries = loadEntriesFromStorage();
   // もし、記録が1件もなかったら、「データがありません」という特別な行を表示する
@@ -107,6 +117,11 @@ function renderEntryTable() {
         <td>${entry.type}</td>
         <td>${entry.minutes}</td>
         <td>${entry.note || ""}</td>
+        <td>
+          <button class="remove-button" onclick="handleClickRemoveButton('${
+            entry.id
+          }')">削除</button>
+        </td>
     </tr>
     `
     )
@@ -117,6 +132,34 @@ function renderEntryTable() {
   tabelBodyElement.innerHTML = tableHTML;
   // 合計件数（文字列）も、ちゃんと更新する
   totalCountElement.textContent = String(entries.length);
+}
+
+/** フィルター処理用の関数 */
+function handleFilterClear() {
+  // 日付入力欄を空っぽにする
+  fileterDateInputElement.value = "";
+  console.log("[handleFilterClear] フィルターが解除されました！");
+  renderEntryTable();
+}
+
+/** 削除ボタンのハンドル関数 */
+function handleClickRemoveButton(entryID) {
+  if (!entryID) {
+    return;
+  }
+  removeEntryById(entryID);
+}
+
+/** エントリを削除する関数 */
+function removeEntryById(entryID) {
+  // ローカルストレージからロードする
+  const entries = loadEntriesFromStorage();
+  // filterメソッドを使って、削除したいIDと「違う」IDを持つデータだけを残した、新しい配列を作る
+  const filterEntries = entries.filter((entry) => entryID !== entry.id);
+  // 新しく出来上がった配列を、localStorageに保存し直す
+  saveEntriesToStorage(filterEntries);
+  // 最後に、テーブルの表示を更新して、画面に削除を反映させる
+  renderEntryTable();
 }
 
 /** ページの準備をするための関数 */
