@@ -7,9 +7,9 @@ let dateInputElement;
 let typeInputElement;
 let requiredTimeInputElement;
 let memoInputElement;
-let tabelBodyElement;
+let tableBodyElement;
 let totalCountElement;
-let fileterDateInputElement;
+let filterDateInputElement;
 let clearFilterButtonElement;
 
 function assignElementReferences() {
@@ -19,10 +19,10 @@ function assignElementReferences() {
   requiredTimeInputElement = document.getElementById("requiredTime");
   memoInputElement = document.getElementById("memo");
   /** テーブルの要素を取得する */
-  tabelBodyElement = document.getElementById("table-body");
+  tableBodyElement = document.getElementById("table-body");
   totalCountElement = document.getElementById("total-count");
   /** フィルターの要素を取得する */
-  fileterDateInputElement = document.getElementById("filter-date");
+  filterDateInputElement = document.getElementById("filter-date");
   clearFilterButtonElement = document.getElementById("clear-filter");
 }
 
@@ -73,7 +73,7 @@ function saveEntriesToStorage(entries) {
 // イベントリスナー（イベントを待ち受ける仕組み）を登録する関数
 function attachEvent() {
   inputFormElement.addEventListener("submit", handleEventListener);
-  fileterDateInputElement.addEventListener("change", renderEntryTable);
+  filterDateInputElement.addEventListener("change", renderEntryTable);
   clearFilterButtonElement.addEventListener("click", handleFilterClear);
 }
 
@@ -102,15 +102,29 @@ function renderEntryTable() {
   console.log("[renderEntryTable] called", new Date().toISOString());
   // まずは、localStorageから全データを読み込む
   const entries = loadEntriesFromStorage();
-  // もし、記録が1件もなかったら、「データがありません」という特別な行を表示する
-  // TODO ここのコード実行されるか確認
-  if (entries.length === 0) {
-    tableHTML = `<tr><td>「データがありません」</td></tr>`;
+
+  /** フィルターでどの日が選ばれているかを取得 */
+  const selectedEntryDate = filterDateInputElement.value;
+  console.log("[filterDateInputElement.value]", filterDateInputElement.value);
+  // フィルターした結果を表示するための新しい配列
+  let filteredEntries = entries;
+  // もし、日付が選択されていたら、絞り込み処理を実行！
+  if (selectedEntryDate) {
+    // 　　選択した日付とdataプロパティと一致するかチェック
+    filteredEntries = entries.filter(
+      (entry) => entry.date === selectedEntryDate
+    );
   }
-  // 配列のデータを、forループで一件ずつ取り出して処理する
-  // テーブルの要素はテーブルの行にデータを追加する順番
-  // TODO <td class="text-end">は使うときに追加
-  const tableHTML = entries
+  console.log("[renderEntryTable] これから表示するデータ:", filteredEntries);
+
+  // 絞り込んだ後の配列を、新しい順に並び替える
+  filteredEntries.sort((a, b) => b.createAt - a.createAt);
+  // 合計件数（文字列）も、ちゃんと更新する
+  // textContentはDOMに文字列を入れるプロパティだから明示的に文字列化
+  totalCountElement.textContent = String(filteredEntries.length);
+
+  //  絞り込んだ後の配列を使って、テーブルのHTMLを組み立てる
+  let tableHTML = filteredEntries
     .map(
       (entry) => `
     <tr>
@@ -127,18 +141,41 @@ function renderEntryTable() {
     `
     )
     .join("");
-  console.table(entries);
+
+  // もし、記録が1件もなかったら、「データがありません」という特別な行を表示する
+  // フィルターした結果でデータがなかったときの処理を書く
+  if (filteredEntries.length === 0) {
+    tableHTML = `<tr><td colspan="5">「データがありません」</td></tr>`;
+  }
+  // 配列のデータを、forループで一件ずつ取り出して処理する
+  // テーブルの要素はテーブルの行にデータを追加する順番
+  // TODO <td class="text-end">は使うときに追加
+  // tableHTML = entries
+  //   .map(
+  //     (entry) => `
+  //   <tr>
+  //       <td>${entry.date}</td>
+  //       <td>${entry.type}</td>
+  //       <td>${entry.minutes}</td>
+  //       <td>${entry.note || ""}</td>
+  //       <td>
+  //         <button class="remove-button" onclick="handleClickRemoveButton('${
+  //           entry.id
+  //         }')">削除</button>
+  //       </td>
+  //   </tr>
+  //   `
+  //   )
+  //   .join("");
 
   // 出来上がったHTMLの文字列を、テーブルの<tbody>に一気に流し込む！
-  tabelBodyElement.innerHTML = tableHTML;
-  // 合計件数（文字列）も、ちゃんと更新する
-  totalCountElement.textContent = String(entries.length);
+  tableBodyElement.innerHTML = tableHTML;
 }
 
 /** フィルター処理用の関数 */
 function handleFilterClear() {
   // 日付入力欄を空っぽにする
-  fileterDateInputElement.value = "";
+  filterDateInputElement.value = "";
   console.log("[handleFilterClear] フィルターが解除されました！");
   renderEntryTable();
 }
