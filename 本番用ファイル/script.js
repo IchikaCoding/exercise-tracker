@@ -133,7 +133,7 @@ function renderEntryTable() {
         <td>${entry.minutes}</td>
         <td>${entry.note || ""}</td>
         <td>
-          <button class="remove-button" onclick="handleClickRemoveButton('${
+          <button class="remove-button btn btn-sm btn-outline-danger" onclick="handleClickRemoveButton('${
             entry.id
           }')">削除</button>
         </td>

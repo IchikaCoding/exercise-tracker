@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <script defer src="script.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <title>運動記録アプリ</title>
+    <meta
+      name="description"
+      content="有酸素運動のみ記録ができるシンプルなアプリです"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1>運動記録アプリ</h1>
+        <!-- 左側の列 -->
+        <div id="input-form-section" class="col-md-6">
+          <!-- 入力フォーム -->
+          <h2>入力フォーム</h2>
+          <form id="input-form">
+            <!-- 日付の入力エリア -->
+            <div class="form-field mb-3">
+              <label for="date" class="required form-label">日付</label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                class="form-control"
+                required
+              />
+            </div>
+            <!-- 運動種目の入力エリア -->
+            <div class="form-field mb-3">
+              <label for="type" class="required form-label">運動種目</label>
+              <!-- <input
+            type="text"
+            id="type"
+            name="type"
+            required
+            placeholder="縄跳び"
+          /> -->
+              <select name="type" id="type" required>
+                <option value="">選択してください</option>
+                <option value="あるきあるき">あるきあるき</option>
+                <option value="なわとび">なわとび</option>
+                <option value="ランニング">ランニング</option>
+                <option value="スイミング">スイミング</option>
+                <option value="ボクシング">ボクシング</option>
+              </select>
+            </div>
+            <!-- 所要時間の入力エリア -->
+            <div class="form-field mb-3">
+              <label for="requiredTime" class="required form-label"
+                >所要時間（分）</label
+              >
+              <input
+                type="number"
+                id="requiredTime"
+                name="requiredTime"
+                min="0"
+                class="form-control"
+                required
+              />
+              <span>分</span>
+            </div>
+            <!-- メモの入力エリア -->
+            <div class="form-field mb-3">
+              <label for="memo  form-label">メモ</label>
+              <input
+                type="text"
+                id="memo"
+                name="memo"
+                placeholder="ひとこと入力してね"
+                class="form-control"
+              />
+            </div>
+            <button type="submit" class="btn btn-outline-primary">追加</button>
+            <!-- <input type="reset" />
+        <input type="button" />
+        <input type="submit" /> -->
+          </form>
+        </div>
+        <!-- 右側の列 -->
+        <div class="col-md-6">
+          <!-- フィルターの設定画面 -->
+          <div class="mb-3 mt-3">
+            <label for="filter-date  form-label">日付で絞り込み:</label>
+            <input
+              type="date"
+              id="filter-date"
+              name="filter-date"
+              class="form-control"
+            />
+            <button
+              id="clear-filter"
+              type="button"
+              class="btn btn-outline-secondary"
+            >
+              フィルタ解除
+            </button>
+          </div>
+          <!-- 記録の一覧画面 -->
+          <section id="input-display-section">
+            <h2>運動記録一覧</h2>
+            <table id="input-table" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>日付</th>
+                  <th>運動種目</th>
+                  <th>所要時間</th>
+                  <th>メモ</th>
+                </tr>
+              </thead>
+              <tbody id="table-body"></tbody>
+            </table>
+            <div>
+              <span>合計件数：</span>
+              <span id="total-count"></span>
+            </div>
+          </section>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <p>（1）あいうえお</p>
+              </div>
+              <div class="col-md-6">
+                <p>（2）あいうえお</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
