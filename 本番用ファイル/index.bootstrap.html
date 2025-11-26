@@ -26,6 +26,32 @@
   </head>
   <body>
     <div class="container">
+      <!-- TODO JSでdata-bs-themeを書き換える処理を追加する -->
+      <!-- テーマのモード切り替えのボタン -->
+      <div>
+        <div class="d-flex justify-content-end align-items-center gap-2 mb-3">
+          <span class="small text-muted d-flex align-items-center gap-1">
+            <i class="bi bi-sun-fill text-warning"></i>
+            Light
+          </span>
+          <div class="form-check form-switch m-0">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="theme-toggle"
+              aria-label="ライト・ダーク切り替え"
+            />
+            <label
+              class="form-check-label small d-flex align-items-center gap-1"
+              for="theme-toggle"
+            >
+              <i class="bi bi-moon-stars-fill text-info"></i>
+              Dark
+            </label>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <h1>運動記録アプリ</h1>
         <!-- 左側の列 -->
@@ -35,7 +61,9 @@
           <form id="input-form">
             <!-- 日付の入力エリア -->
             <div class="form-field mb-3">
-              <label for="date" class="required form-label">日付</label>
+              <label for="date" class="required form-label"
+                ><i class="bi bi-calender-date"></i>日付</label
+              >
               <input
                 type="date"
                 id="date"
@@ -80,7 +108,10 @@
             </div>
             <!-- メモの入力エリア -->
             <div class="form-field mb-3">
-              <label for="memo  form-label">メモ</label>
+              <label for="memo" class="form-label">
+                <span role="img" aria-label="メモ">📝</span>
+                メモ
+              </label>
               <input
                 type="text"
                 id="memo"
@@ -89,7 +120,13 @@
                 class="form-control"
               />
             </div>
-            <button type="submit" class="btn btn-outline-primary">追加</button>
+            <button type="submit" class="btn btn-outline-primary">
+              <span
+                class="bi-emoji-smile text-warning"
+                aria-hidden="true"
+              ></span
+              >追加
+            </button>
             <!-- <input type="reset" />
         <input type="button" />
         <input type="submit" /> -->
@@ -99,7 +136,7 @@
         <div class="col-md-6">
           <!-- フィルターの設定画面 -->
           <div class="mb-3 mt-3">
-            <label for="filter-date  form-label">日付で絞り込み:</label>
+            <label for="filter-date" class="form-label">日付で絞り込み:</label>
             <input
               type="date"
               id="filter-date"
@@ -120,10 +157,22 @@
             <table id="input-table" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>日付</th>
-                  <th>運動種目</th>
-                  <th>所要時間</th>
-                  <th>メモ</th>
+                  <th class="text-center">
+                    <i class="bi bi-calendar-date"></i>
+                    <span class="d-none d-md-inline ms-1">日付</span>
+                  </th>
+                  <th class="text-center">
+                    <i class="bi bi-tag"></i
+                    ><span class="d-none d-md-inline ms-1">運動種目</span>
+                  </th>
+                  <th class="text-center">
+                    <i class="bi bi-clock"></i
+                    ><span class="d-none d-md-inline ms-1">所要時間</span>
+                  </th>
+                  <th class="text-center">
+                    <i class="bi bi-pencil"></i
+                    ><span class="d-none d-md-inline ms-1">メモ</span>
+                  </th>
                 </tr>
               </thead>
               <tbody id="table-body"></tbody>
