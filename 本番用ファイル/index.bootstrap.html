@@ -57,7 +57,7 @@
         <!-- 左側の列 -->
         <div id="input-form-section" class="col-md-6">
           <!-- 入力フォーム -->
-          <h2>入力フォーム</h2>
+          <h2><i class="bi bi-pencil-square me-3"></i>入力フォーム</h2>
           <form id="input-form">
             <!-- 日付の入力エリア -->
             <div class="form-field mb-3">
@@ -135,14 +135,18 @@
         <!-- 右側の列 -->
         <div class="col-md-6">
           <!-- フィルターの設定画面 -->
-          <div class="mb-3 mt-3">
-            <label for="filter-date" class="form-label">日付で絞り込み:</label>
-            <input
-              type="date"
-              id="filter-date"
-              name="filter-date"
-              class="form-control"
-            />
+          <div class="mb-3 mt-3 d-flex gap-2 align-items-end">
+            <div>
+              <label for="filter-date" class="form-label"
+                >日付で絞り込み:</label
+              >
+              <input
+                type="date"
+                id="filter-date"
+                name="filter-date"
+                class="form-control"
+              />
+            </div>
             <button
               id="clear-filter"
               type="button"
