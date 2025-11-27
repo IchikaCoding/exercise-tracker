@@ -146,10 +146,10 @@ function renderEntryTable() {
     .map(
       (entry) => `
     <tr>
-        <td>${entry.date}</td>
-        <td>${entry.type}</td>
-        <td>${entry.minutes}</td>
-        <td>${entry.note || ""}</td>
+        <td>${escapeHtml(entry.date)}</td>
+        <td>${escapeHtml(entry.type)}</td>
+        <td>${escapeHtml(entry.minutes)}</td>
+        <td>${escapeHtml(entry.note || "")}</td>
         <td>
           <button class="remove-button btn btn-sm btn-outline-danger" onclick="handleClickRemoveButton('${
             entry.id
@@ -272,4 +272,19 @@ function initializePage() {
   attachEvent();
   renderEntryTable();
 }
+
+/** innerHTML に入れる前に危険な文字をエスケープ */
+// 空文字を返す理由は、returnだけだとundefinedを返して画面にundefinedが表示されちゃうから！
+function escapeHtml(value) {
+  if (value === undefined || value === null) {
+    return "";
+  }
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "$#39;");
+}
+
 document.addEventListener("DOMContentLoaded", initializePage);
