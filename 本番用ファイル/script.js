@@ -11,6 +11,7 @@ let tableBodyElement;
 let totalCountElement;
 let filterDateInputElement;
 let clearFilterButtonElement;
+let debugRemoveButtonElement;
 
 function assignElementReferences() {
   inputFormElement = document.getElementById("input-form");
@@ -24,6 +25,8 @@ function assignElementReferences() {
   /** フィルターの要素を取得する */
   filterDateInputElement = document.getElementById("filter-date");
   clearFilterButtonElement = document.getElementById("clear-filter");
+  /** debug用の削除ボタンを取得する */
+  debugRemoveButtonElement = document.getElementById("debug-remove-button");
 }
 
 // // オブジェクトのプロパティ変更
@@ -81,6 +84,7 @@ function attachEvent() {
   inputFormElement.addEventListener("submit", handleEventListener);
   filterDateInputElement.addEventListener("change", renderEntryTable);
   clearFilterButtonElement.addEventListener("click", handleFilterClear);
+  debugRemoveButtonElement.addEventListener("click", handleDebugButton);
 }
 
 // フォームが送信（submit）されたときに呼ばれる関数
@@ -200,6 +204,26 @@ function handleClickRemoveButton(entryID) {
     return;
   }
   removeEntryById(entryID);
+}
+
+/** localStorage のデータを全削除するデバッグボタンの処理。*/
+// localStorage の「このアプリ関連」の「記録データ全て」を削除します。よろしいですか？
+// データを削除しました。
+// 確認する→削除→再描画→通知
+// TODO 関数名を検討
+function handleDebugButton() {
+  const message =
+    "localStorage の「このアプリ関連」の「記録データ全て」を削除します。よろしいですか？";
+  const result = window.confirm(message);
+  if (!result) {
+    filterDateInputElement.value = "";
+    return;
+  }
+  localStorage.removeItem(WORKOUT_STORAGE_KEY);
+  filterDateInputElement.value = "";
+  renderEntryTable();
+
+  window.alert("データを削除しました。");
 }
 
 /** エントリを削除する関数 */
