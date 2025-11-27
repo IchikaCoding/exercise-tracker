@@ -55,11 +55,17 @@ function getFormData() {
   };
 }
 
-// localStorageから、保存されている記録の配列を読み込む関数load
+/** localStorageから、保存されている記録の配列を読み込む関数load */
 //  返す値は保存されているデータがあるかどうかによって変わる
+//　tryの中でエラーが起きたら、キャッチの処理が動く！（失敗したときに動かすコードを書いておく）
 function loadEntriesFromStorage() {
-  const rawData = localStorage.getItem(WORKOUT_STORAGE_KEY);
-  return rawData ? JSON.parse(rawData) : [];
+  try {
+    const rawData = localStorage.getItem(WORKOUT_STORAGE_KEY);
+    return rawData ? JSON.parse(rawData) : [];
+  } catch (e) {
+    console.error("ストレージからのデータ読み込みに失敗しました:", e);
+    return [];
+  }
 }
 
 // 記録の配列を、丸ごとlocalStorageに保存する関数save
@@ -84,6 +90,14 @@ function handleEventListener(event) {
   event.preventDefault();
 
   const entry = getFormData();
+
+  /** 運動の種類か日付が入力されていなかったらアラートする処理 */
+  if (!entry.date || !entry.type || !entry.minutes) {
+    alert("日付と種目、所要時間が入力されていません。必須項目です🐣");
+    console.log("アラートが発生しました");
+    return;
+  }
+
   const entries = loadEntriesFromStorage();
   entries.push(entry);
   saveEntriesToStorage(entries);
@@ -200,9 +214,37 @@ function removeEntryById(entryID) {
   renderEntryTable();
 }
 
+/** 自動で日付入力してくれる処理 */
+/** 2ケタ表示に整えるための処理(padToTwoDigits) */
+function padToTwoDigits(value) {
+  return String(value).padStart(2, "0");
+}
+
+/** 今日の日付を YYYYMMDD の文字列で取得します。 */
+function getTodayString() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = padToTwoDigits(today.getMonth() + 1);
+  const date = padToTwoDigits(today.getDate());
+  console.log({ today });
+  console.log({ year });
+  console.log({ month });
+  console.log({ date });
+  return `${year}${month}${date}`;
+}
+
+/** YYYYMMDD 形式の文字列を、input[type="date"] 用の YYYY-MM-DD に変換 */
+function formatDateForInput(value) {
+  const year = value.slice(0, 4);
+  const month = value.slice(4, 6);
+  const date = value.slice(6, 8);
+  return `${year}-${month}-${date}`;
+}
+
 /** ページの準備をするための関数 */
 function initializePage() {
   assignElementReferences();
+  dateInputElement.value = formatDateForInput(getTodayString());
   attachEvent();
   renderEntryTable();
 }
