@@ -120,9 +120,11 @@
                 class="form-control"
               />
             </div>
-            <button type="submit" class="btn btn-outline-primary">
-              <span class="bi bi-plus-lg" aria-hidden="true"></span>追加
-            </button>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">
+                <span class="bi bi-plus-lg" aria-hidden="true"></span>追加
+              </button>
+            </div>
             <!-- <input type="reset" />
         <input type="button" />
         <input type="submit" /> -->
@@ -131,7 +133,7 @@
         <!-- 右側の列 -->
         <div class="col-md-6">
           <!-- フィルターの設定画面 -->
-          <div class="mb-3 mt-3 d-flex gap-2 align-items-end">
+          <div class="mb-3 mt-3 d-flex flex-wrap gap-2 align-items-end">
             <div>
               <label for="filter-date" class="form-label"
                 >日付で絞り込み:</label
@@ -143,6 +145,7 @@
                 class="form-control"
               />
             </div>
+
             <button
               id="clear-filter"
               type="button"
@@ -157,7 +160,7 @@
               class="btn btn-outline-danger"
             >
               <i class="bi bi-trash" aria-hidden="true"></i>
-              Debug：削除ボタン
+              Debug用ボタン
             </button>
           </div>
           <!-- 記録の一覧画面 -->

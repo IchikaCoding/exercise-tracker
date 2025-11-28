@@ -148,12 +148,12 @@ function renderEntryTable() {
     <tr>
         <td>${escapeHtml(entry.date)}</td>
         <td>${escapeHtml(entry.type)}</td>
-        <td>${escapeHtml(entry.minutes)}</td>
+        <td class="text-center">${escapeHtml(entry.minutes)}</td>
         <td>${escapeHtml(entry.note || "")}</td>
         <td>
           <button class="remove-button btn btn-sm btn-outline-danger" onclick="handleClickRemoveButton('${
             entry.id
-          }')">削除</button>
+          }')"><i class="bi bi-trash"></i><span class="d-none">削除</span></button>
         </td>
     </tr>
     `
