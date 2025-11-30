@@ -6,7 +6,7 @@
   /**
    * HTMLで選択されたモードを取得する処理
    */
-  function getThemeMode() {
+  function getToggleElement() {
     const el = document.getElementById("theme-toggle");
     console.log(el.checked);
     return el;
@@ -14,18 +14,20 @@
   /**
    * ボタンが押されたかどうかを確認できる処理
    * 引数はel.checked→trueだったらtrueだよ，
-   *
+   * もしフォルスならapplyTheme("light"), trueならapplyTheme("dark")
    */
   function handleToggle() {
-    const el = getThemeMode();
+    const el = getToggleElement();
     let isDarkMode = el.checked;
-    if (!isDarkMode) {
-      handleLightTheme();
-      console.log("ライトモードに変更中！");
-    } else {
-      handleDarkTheme();
-      console.log("ダークモード");
-    }
+    isDarkMode === true ? applyTheme("dark") : applyTheme("light");
+  }
+  /**
+   * テーマを適用するための処理
+   * @param {string} theme
+   */
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-bs-theme", theme);
   }
 
   /**
@@ -50,11 +52,12 @@
     console.log("theme:", theme);
   }
 
-  const currentThemeElement = getThemeMode();
+  const currentThemeElement = getToggleElement();
   currentThemeElement.addEventListener("change", handleToggle);
 
   /**
    * 選択されたモードを記録する
+   * TODO ローカルストレージ保存機能を実装
    */
   function saveSelectTheme() {}
 }
