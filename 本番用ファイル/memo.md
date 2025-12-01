@@ -181,3 +181,11 @@ HTML を上から読み込み > script タグの位置で JS を実行 > 下ま�
   - HTML のほうの onsubmit が実行された
 - `const form = document.getElementById("input-form"); getEventListeners(form).submit`を実行したら`[0]`に onsubmit がいた。`[1]`には`handleEventListener(event)`がいた
 - 実行順がわからない
+
+---
+
+```ts
+type toggleThemeEntry = {
+  theme: string;
+};
+```
