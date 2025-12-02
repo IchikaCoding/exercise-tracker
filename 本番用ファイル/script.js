@@ -141,7 +141,6 @@ function renderEntryTable() {
   // textContentはDOMに文字列を入れるプロパティだから明示的に文字列化
   totalCountElement.textContent = String(filteredEntries.length);
 
-  // TODO 所要時間が0分なら，空文字入力
   //  絞り込んだ後の配列を使って、テーブルのHTMLを組み立てる
   let tableHTML = filteredEntries
     .map(
