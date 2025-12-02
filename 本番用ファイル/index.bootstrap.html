@@ -30,184 +30,190 @@
     <div class="container">
       <!-- TODO JSでdata-bs-themeを書き換える処理を追加する -->
       <!-- テーマのモード切り替えのボタン -->
-        <div class="d-flex justify-content-end align-items-center gap-2 mb-3">
-          <span class="small text-muted d-flex align-items-center gap-1">
-            <i class="bi bi-sun-fill text-warning"></i>
-            Light
-          </span>
-          <div class="form-check form-switch m-0">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              role="switch"
-              id="theme-toggle"
-              aria-label="ライト・ダーク切り替え"
-            />
-            <label
-              class="form-check-label small d-flex align-items-center gap-1"
-              for="theme-toggle"
-            >
-              <i class="bi bi-moon-stars-fill text-info"></i>
-              Dark
-            </label>
-          </div>
-        
+      <div class="d-flex justify-content-end align-items-center gap-2 mb-3">
+        <span class="small text-muted d-flex align-items-center gap-1">
+          <i class="bi bi-sun-fill text-warning"></i>
+          Light
+        </span>
+        <div class="form-check form-switch m-0">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="theme-toggle"
+            aria-label="ライト・ダーク切り替え"
+          />
+          <label
+            class="form-check-label small d-flex align-items-center gap-1"
+            for="theme-toggle"
+          >
+            <i class="bi bi-moon-stars-fill text-info"></i>
+            Dark
+          </label>
+        </div>
       </div>
       <h1>運動記録アプリ</h1>
       <div class="row">
-        <div class="col-12 row g-4">
-        <!-- 左側の列 -->
-        <div id="input-form-section" class="col-md-6 card text-bg-secondary">
-          <!-- 入力フォーム -->
-          <h2 class="card-title"><i class="bi bi-pencil-square me-2"></i>入力フォーム</h2>
-          <form id="input-form">
-            <div class="card-body">
-            <!-- 日付の入力エリア -->
-            <div class="form-field mb-3">
-              <label for="date" class="required form-label"
-                ><i class="bi bi-calender-date"></i>日付</label
-              >
-              <input
-                type="date"
-                id="date"
-                name="date"
-                class="form-control"
-                required
-              />
-            </div>
-            <!-- 運動種目の入力エリア -->
-            <div class="form-field mb-3">
-              <label for="type" class="required form-label">運動種目</label>
-              <!-- <input
+        <!-- TODO なぜここでalign-items-start？ -->
+        <div class="col-12 align-items-start g-4">
+          <!-- 左側の列 -->
+          <div id="input-form-section" class="col-md-6 card text-bg-secondary">
+            <!-- 入力フォーム -->
+            <h3 class="card-title mt-3 ms-3">
+              <i class="bi bi-pencil-square me-2"></i>入力フォーム
+            </h3>
+            <form id="input-form">
+              <div class="card-body">
+                <!-- 日付の入力エリア -->
+                <div class="form-field mb-3">
+                  <label for="date" class="required form-label"
+                    ><i class="bi bi-calender-date"></i>日付</label
+                  >
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <!-- 運動種目の入力エリア -->
+                <div class="form-field mb-3">
+                  <label for="type" class="required form-label">運動種目</label>
+                  <!-- <input
             type="text"
             id="type"
             name="type"
             required
             placeholder="縄跳び"
           /> -->
-              <select name="type" id="type" required>
-                <option value="">選択してください</option>
-                <option value="あるきあるき">あるきあるき</option>
-                <option value="なわとび">なわとび</option>
-                <option value="ランニング">ランニング</option>
-                <option value="スイミング">スイミング</option>
-                <option value="ボクシング">ボクシング</option>
-              </select>
-            </div>
-            <!-- 所要時間の入力エリア -->
-            <div class="form-field mb-3">
-              <label for="requiredTime" class="required form-label"
-                >所要時間（分）</label
-              >
-              <input
-                type="number"
-                id="requiredTime"
-                name="requiredTime"
-                min="0"
-                class="form-control"
-                required
-              />
-              <span>分</span>
-            </div>
-            <!-- メモの入力エリア -->
-            <div class="form-field mb-3">
-              <label for="memo" class="form-label">
-                <span role="img" aria-label="メモ">📝</span>
-                メモ
-              </label>
-              <input
-                type="text"
-                id="memo"
-                name="memo"
-                placeholder="ひとこと入力してね"
-                class="form-control"
-              />
-            </div>
-            <div class="d-grid">
-              <button type="submit" class="btn btn-primary">
-                <span class="bi bi-plus-lg" aria-hidden="true"></span>追加
-              </button>
-            </div>
-            </div>
-            <!-- <input type="reset" />
+                  <select name="type" id="type" class="form-select" required>
+                    <option value="">選択してください</option>
+                    <option value="あるきあるき">あるきあるき</option>
+                    <option value="なわとび">なわとび</option>
+                    <option value="ランニング">ランニング</option>
+                    <option value="スイミング">スイミング</option>
+                    <option value="ボクシング">ボクシング</option>
+                  </select>
+                </div>
+                <!-- 所要時間の入力エリア -->
+                <div class="form-field mb-3">
+                  <label for="requiredTime" class="required form-label"
+                    >所要時間（分）</label
+                  >
+                  <input
+                    type="number"
+                    id="requiredTime"
+                    name="requiredTime"
+                    min="0"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <!-- メモの入力エリア -->
+                <div class="form-field mb-3">
+                  <label for="memo" class="form-label">
+                    <span role="img" aria-label="メモ">📝</span>
+                    メモ
+                  </label>
+                  <input
+                    type="text"
+                    id="memo"
+                    name="memo"
+                    placeholder="ひとこと入力してね"
+                    class="form-control"
+                  />
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">
+                    <span class="bi bi-plus-lg" aria-hidden="true"></span>追加
+                  </button>
+                </div>
+              </div>
+              <!-- <input type="reset" />
         <input type="button" />
         <input type="submit" /> -->
-          </form>
-        </div>
-        
-        <!-- 右側の列 -->
-        <div class="col-md-6">
-          <!-- フィルターの設定画面 -->
-          <div class="card text-bg-secondary">
-            <div class="card-body">
-            <div class="mb-3 mt-3 d-flex flex-wrap gap-2 align-items-end">
-              <div>
-                <label for="filter-date" class="form-label"
-                  >日付で絞り込み:</label
-                >
-                <input
-                  type="date"
-                  id="filter-date"
-                  name="filter-date"
-                  class="form-control"
-                />
-              </div>
+            </form>
+          </div>
 
-              <button
-                id="clear-filter"
-                type="button"
-                class="btn btn-outline-secondary"
-              >
-                <i class="bi bi-x-lg" aria-hidden="true"></i>
-                フィルタ解除
-              </button>
-              <button
-                id="debug-remove-button"
-                type="button"
-                class="btn btn-outline-danger"
-              >
-                <i class="bi bi-trash" aria-hidden="true"></i>
-                Debug用ボタン
-              </button>
+          <!-- 右側の列 -->
+          <div class="col-md-6 d-flex flex-column gap-3">
+            <!-- フィルターの設定画面 -->
+            <div class="card text-bg-secondary">
+              <div class="mb-3">
+                <div class="card-body">
+                  <div class="mb-3 mt-3 d-flex flex-wrap gap-2 align-items-end">
+                    <div>
+                      <label for="filter-date" class="form-label"
+                        >日付で絞り込み:</label
+                      >
+                      <input
+                        type="date"
+                        id="filter-date"
+                        name="filter-date"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <button
+                      id="clear-filter"
+                      type="button"
+                      class="btn btn-primary"
+                    >
+                      <i class="bi bi-x-lg" aria-hidden="true"></i>
+                      フィルタ解除
+                    </button>
+                    <button
+                      id="debug-remove-button"
+                      type="button"
+                      class="btn btn-outline-danger"
+                    >
+                      <i class="bi bi-trash" aria-hidden="true"></i>
+                      Debug用ボタン
+                    </button>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <span>合計件数：</span>
+                  <span id="total-count"></span>
+                </div>
+              </div>
             </div>
-            <div class="text-end">
-              <span>合計件数：</span>
-              <span id="total-count"></span>
-            </div>
+
+            <!-- 記録の一覧画面 -->
+            <section id="input-display-section" class="card text-bg-secondary">
+              <h3 class="card-title">運動記録一覧</h3>
+              <div class="card-body">
+                <table
+                  id="input-table"
+                  class="table table-bordered table-striped"
+                >
+                  <thead>
+                    <tr>
+                      <th class="text-center">
+                        <i class="bi bi-calendar-date"></i>
+                        <span class="d-none d-md-inline ms-1">日付</span>
+                      </th>
+                      <th class="text-center">
+                        <i class="bi bi-tag"></i
+                        ><span class="d-none d-md-inline ms-1">運動種目</span>
+                      </th>
+                      <th class="text-center">
+                        <i class="bi bi-clock"></i
+                        ><span class="d-none d-md-inline ms-1">所要時間</span>
+                      </th>
+                      <th class="text-center">
+                        <i class="bi bi-pencil"></i
+                        ><span class="d-none d-md-inline ms-1">メモ</span>
+                      </th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-body"></tbody>
+                </table>
+              </div>
+            </section>
           </div>
-          </div>
-          <!-- 記録の一覧画面 -->
-           <h2>運動記録一覧</h2>
-          <section id="input-display-section" class="card">
-            
-            <div class="card-body">
-        
-            <table id="input-table" class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th class="text-center">
-                    <i class="bi bi-calendar-date"></i>
-                    <span class="d-none d-md-inline ms-1">日付</span>
-                  </th>
-                  <th class="text-center">
-                    <i class="bi bi-tag"></i
-                    ><span class="d-none d-md-inline ms-1">運動種目</span>
-                  </th>
-                  <th class="text-center">
-                    <i class="bi bi-clock"></i
-                    ><span class="d-none d-md-inline ms-1">所要時間</span>
-                  </th>
-                  <th class="text-center">
-                    <i class="bi bi-pencil"></i
-                    ><span class="d-none d-md-inline ms-1">メモ</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody id="table-body"></tbody>
-            </table>
-          </section>
-          </div>
-        </div>
         </div>
       </div>
     </div>
