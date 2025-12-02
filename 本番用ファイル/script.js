@@ -94,9 +94,9 @@ function handleEventListener(event) {
   event.preventDefault();
 
   const entry = getFormData();
-
+  // TODO 0はfalsyだからこの処理に入ってしまうかも
   /** 運動の種類か日付が入力されていなかったらアラートする処理 */
-  if (!entry.date || !entry.type || !entry.minutes) {
+  if (!entry.date || !entry.type) {
     alert("日付と種目、所要時間が入力されていません。必須項目です🐣");
     console.log("アラートが発生しました");
     return;
@@ -141,6 +141,7 @@ function renderEntryTable() {
   // textContentはDOMに文字列を入れるプロパティだから明示的に文字列化
   totalCountElement.textContent = String(filteredEntries.length);
 
+  // TODO 所要時間が0分なら，空文字入力
   //  絞り込んだ後の配列を使って、テーブルのHTMLを組み立てる
   let tableHTML = filteredEntries
     .map(
@@ -148,7 +149,7 @@ function renderEntryTable() {
     <tr>
         <td>${escapeHtml(entry.date)}</td>
         <td>${escapeHtml(entry.type)}</td>
-        <td class="text-center">${escapeHtml(entry.minutes)}</td>
+        <td class="text-center">${escapeHtml(entry.minutes || "")}</td>
         <td>${escapeHtml(entry.note || "")}</td>
         <td>
           <button class="remove-button btn btn-sm btn-outline-danger" onclick="handleClickRemoveButton('${
