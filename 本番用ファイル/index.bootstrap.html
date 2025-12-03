@@ -27,8 +27,8 @@
     />
   </head>
   <body>
-    <div class="container">
-      <!-- TODO JSでdata-bs-themeを書き換える処理を追加する -->
+    <div class="container py-4">
+      <h1><i class="bi bi-activity me-1"></i>運動記録アプリ</h1>
       <!-- テーマのモード切り替えのボタン -->
       <div class="d-flex justify-content-end align-items-center gap-2 mb-3">
         <span class="small text-muted d-flex align-items-center gap-1">
@@ -52,16 +52,17 @@
           </label>
         </div>
       </div>
-      <h1>運動記録アプリ</h1>
-      <div class="row">
+      <!-- TODO g-3の効果が不明 -->
+      <div class="row g-3">
         <!-- TODO なぜここでalign-items-start？ -->
-        <div class="col-12 align-items-start g-4">
+        <div class="col-12 col-lg-5">
           <!-- 左側の列 -->
-          <div id="input-form-section" class="col-md-6 card text-bg-secondary">
+          <div id="input-form-section" class="card text-bg-secondary">
             <!-- 入力フォーム -->
             <h3 class="card-title mt-3 ms-3">
               <i class="bi bi-pencil-square me-2"></i>入力フォーム
             </h3>
+            <!-- 入力フォームの幅をvstack gap-3でやると一括で縦並びの幅が揃う -->
             <form id="input-form">
               <div class="card-body">
                 <!-- 日付の入力エリア -->
@@ -135,74 +136,77 @@
         <input type="submit" /> -->
             </form>
           </div>
-
-          <!-- 右側の列 -->
-          <div class="col-md-6 d-flex flex-column gap-3">
-            <!-- フィルターの設定画面 -->
-            <div class="card text-bg-secondary">
-              <div class="mb-3">
-                <div class="card-body">
-                  <div class="mb-3 mt-3 d-flex flex-wrap gap-2 align-items-end">
-                    <div>
-                      <label for="filter-date" class="form-label"
-                        >日付で絞り込み:</label
-                      >
-                      <input
-                        type="date"
-                        id="filter-date"
-                        name="filter-date"
-                        class="form-control"
-                      />
-                    </div>
-
-                    <button
-                      id="clear-filter"
-                      type="button"
-                      class="btn btn-primary"
+        </div>
+        <!-- 右側の列 -->
+        <div class="col-12 col-lg-7">
+          <!-- フィルターの設定画面 -->
+          <div class="card text-bg-secondary mb-3">
+            <div class="mb-3">
+              <div class="card-body">
+                <div class="d-flex flex-wrap gap-2 align-items-end">
+                  <div>
+                    <label for="filter-date" class="form-label">
+                      <!-- aria-hidden="true"は読み上げない要素にするもの -->
+                      <i class="bi bi-calendar me-1" aria-hidden="true"></i
+                      >日付で絞り込み:</label
                     >
-                      <i class="bi bi-x-lg" aria-hidden="true"></i>
-                      フィルタ解除
-                    </button>
-                    <button
-                      id="debug-remove-button"
-                      type="button"
-                      class="btn btn-outline-danger"
-                    >
-                      <i class="bi bi-trash" aria-hidden="true"></i>
-                      Debug用ボタン
-                    </button>
+                    <input
+                      type="date"
+                      id="filter-date"
+                      name="filter-date"
+                      class="form-control"
+                    />
                   </div>
-                </div>
-                <div class="text-end">
-                  <span>合計件数：</span>
-                  <span id="total-count"></span>
+
+                  <button
+                    id="clear-filter"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                    フィルタ解除
+                  </button>
+                  <button
+                    id="debug-remove-button"
+                    type="button"
+                    class="btn btn-outline-danger"
+                  >
+                    <i class="bi bi-trash" aria-hidden="true"></i>
+                    Debug用ボタン
+                  </button>
                 </div>
               </div>
+              <div class="text-end me-4">
+                <span>合計件数：</span>
+                <span id="total-count"></span>
+              </div>
             </div>
+          </div>
 
-            <!-- 記録の一覧画面 -->
-            <section id="input-display-section" class="card text-bg-secondary">
-              <h3 class="card-title">運動記録一覧</h3>
-              <div class="card-body">
+          <!-- 記録の一覧画面 -->
+          <section id="input-display-section" class="card text-bg-secondary">
+            <h3 class="card-title mt-3 ms-3">運動記録一覧</h3>
+            <div class="card-body">
+              <div class="table-responsive table-wrap">
                 <table
                   id="input-table"
-                  class="table table-bordered table-striped"
+                  class="table table-bordered table-sm table-striped table-middle"
                 >
                   <thead>
                     <tr>
-                      <th class="text-center">
+                      <th class="text-center text-nowrap">
                         <i class="bi bi-calendar-date"></i>
                         <span class="d-none d-md-inline ms-1">日付</span>
                       </th>
-                      <th class="text-center">
+                      <th class="text-center text-nowrap">
                         <i class="bi bi-tag"></i
                         ><span class="d-none d-md-inline ms-1">運動種目</span>
                       </th>
-                      <th class="text-center">
+                      <th class="text-center text-nowrap">
                         <i class="bi bi-clock"></i
                         ><span class="d-none d-md-inline ms-1">所要時間</span>
                       </th>
-                      <th class="text-center">
+                      <th class="text-center text-nowrap">
                         <i class="bi bi-pencil"></i
                         ><span class="d-none d-md-inline ms-1">メモ</span>
                       </th>
@@ -212,8 +216,8 @@
                   <tbody id="table-body"></tbody>
                 </table>
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
